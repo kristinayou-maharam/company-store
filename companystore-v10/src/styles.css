@@ -552,7 +552,11 @@ text-decoration: underline;
   color: red;
 }
 
-ul :hover{
+ul{
+  width: 8vw;
+}
+
+ul:hover{
   color: red !important;
 }
 
