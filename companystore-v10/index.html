@@ -54,6 +54,7 @@
             <a href="sampling.html"><h2>Sampling</h2></a>
             <a href="stationery.html"><h2>Stationery</h2></a>
             <a href="books.html"><h2>Books</h2></a>
+            <a href="more.html"><h2>More</h2> </a>
         </div>
     </div>
 
@@ -157,6 +158,7 @@
 </div>
 
 <script src="./script.js"></script>
+<script src="./cart.js"></script>
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.slick/1.5.7/slick.min.js"></script>
@@ -204,20 +206,20 @@
         x.innerHTML = "";
 
         if (input.trim() !== "") {
-            fetch("./src/new.json")
+            fetch("./src/all.json")
                 .then(response => response.json())
                 .then(data => {
-                    let searchData = JSON.parse(JSON.stringify(data.new));
+                    let searchData = JSON.parse(JSON.stringify(data.all));
 
                     for (let i = 0; i < searchData.length; i++) {
                         let obj = searchData[i];
                         if (obj.name.toLowerCase().includes(input)) {
                             const elem = document.createElement("ul");
-                            elem.innerHTML = `${obj.name}`;
+                            elem.textContent = obj.name;
                             x.appendChild(elem);
                             elem.onclick = function() {
                                 sies();
-                                displayNew(i); // Pass the index value to the displayNew() function
+                                displayAll(i); // Pass the index value to the displayNew() function
                                 x.style.display = "none"; // Hide search results when elem is clicked
                                 document.getElementById('searchQueryInput').value = ""; // Clear searchQueryInput
                             };
@@ -231,7 +233,6 @@
     }
 
     document.getElementById('searchQueryInput').addEventListener('keyup', searchProduct);
-
     </script>
 
     </body>

@@ -37,6 +37,7 @@
             <a href="sampling.html"><h2>Sampling</h2></a>
             <a href="stationery.html"><h2>Stationery</h2></a>
             <a href="books.html"><h2>Books</h2></a>
+            <a href="more.html"><h2>More</h2> </a>
         </div>
     </div>
 
@@ -220,7 +221,6 @@
             showname.style.display = "none";
         }
     }
-
     function searchProduct() {
         let input = document.getElementById('searchQueryInput').value;
         input = input.toLowerCase();
@@ -229,20 +229,20 @@
         x.innerHTML = "";
 
         if (input.trim() !== "") {
-            fetch("./src/print.json")
+            fetch("./src/all.json")
                 .then(response => response.json())
                 .then(data => {
-                    let searchData = JSON.parse(JSON.stringify(data.print));
+                    let searchData = JSON.parse(JSON.stringify(data.all));
 
                     for (let i = 0; i < searchData.length; i++) {
                         let obj = searchData[i];
                         if (obj.name.toLowerCase().includes(input)) {
                             const elem = document.createElement("ul");
-                            elem.innerHTML = `${obj.name}`;
+                            elem.textContent = obj.name;
                             x.appendChild(elem);
                             elem.onclick = function() {
                                 sies();
-                                displayPrint(i); // Pass the index value to the displayNew() function
+                                displayAll(i); // Pass the index value to the displayNew() function
                                 x.style.display = "none"; // Hide search results when elem is clicked
                                 document.getElementById('searchQueryInput').value = ""; // Clear searchQueryInput
                             };
